@@ -17,7 +17,7 @@ This project builds a three-tier network configuration in AWS.We will create a t
 1. The AWS CLI configured with AWS account credentials, and a familiarity with AWS cloud architecture
 2. Terraform installed on your home system
 3. A text editor such as Atom, Visual Studio Code, or PyCharm, with the Terraform plug-in installed
-4. Create a new directory for the four Terraform source files we will be working with: provider.tf,vpc.tf, asg.tf, db.tf, variable.tf and wordpress.sh
+4. Create a new directory for the four Terraform source files we will be working with: provider.tf,vpc.tf, asg.tf, db.tf, route53.tf variable.tf and wordpress.sh
 
 ## provider.tf
 
@@ -192,6 +192,17 @@ resource "aws_db_instance" "default" {
   db_subnet_group_name = module.vpc.database_subnet_group
   vpc_security_group_ids = [module.lb_sg.security_group.id]
   skip_final_snapshot  = true
+}
+```
+## route53.tf
+
+```
+resource "aws_route53_record" "www" {
+zone_id = var.zone_id
+name    = "wordpress."
+type    = "CNAME"
+ttl     = "300"
+records = [aws_db_instance.default.address]
 }
 ```
 
