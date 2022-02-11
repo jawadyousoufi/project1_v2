@@ -18,7 +18,7 @@ resource "aws_launch_template" "webserver" {
   name_prefix   = "${var.namespace}-template"
   image_id      = data.aws_ami.centos.id
   instance_type = "t2.micro"
-  user_data     = filebase64("/home/ec2-user/project1_v2/wordpress.sh")
+  user_data     = filebase64("/home/ec2-user/Terraform-Project/project1_v2/wordpress.sh")
   key_name      = var.ssh_keypair
 
   vpc_security_group_ids = [aws_security_group.allow_tls.id]

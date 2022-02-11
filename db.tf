@@ -16,3 +16,12 @@ resource "aws_db_instance" "default" {
   vpc_security_group_ids = [module.lb_sg.security_group.id]
   skip_final_snapshot  = true
 }
+
+resource "aws_route53_record" "terraform" {
+  zone_id = "Z06411543BAX9LYP3T556"
+  name    = "terraform.awsjawad.com"
+  type    = "CNAME"
+  ttl     = "300"
+  records = [aws_db_instance.default.address]
+}
+

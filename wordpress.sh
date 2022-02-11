@@ -1,4 +1,9 @@
 #!/bin/bash
+WORDPRESS_DB_NAME="wordpress"
+WORDPRESS_DB_HOST="db.company.com"
+WORDPRESS_DB_USER="redhat"
+WORDPRESS_DB_PASSWORD="password"
+
 # Install necessary tools
 sudo yum install httpd wget unzip epel-release mysql -y
 sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
