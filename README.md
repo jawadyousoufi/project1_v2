@@ -10,6 +10,7 @@ This project builds a three-tier network configuration in AWS.We will create a t
 * Configures security group for Web layer
 * EC2 instances for webservers
 * Application load balancer
+* Route53
 
 ## Prerequisites
 
